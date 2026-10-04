@@ -32,10 +32,10 @@ PYEOF
 export JAVA_HOME=/home/user/tools/jdk-21.0.12.1+1
 export PATH=$JAVA_HOME/bin:$PATH
 ./gradlew clean build -q
-cp build/libs/Nexus-Client-a0.7.jar "../Nexus a0.7 1.21.11.jar"
+cp build/libs/Nexus-Client-a0.8.jar "../Nexus a0.8 1.21.11.jar"
 # 恢复源码（测试钩子保留在源码中供开发测试用）
 cp "$BAK" "$SRC"
 # 验证 jar 内无测试代码
-unzip -p "../Nexus a0.7 1.21.11.jar" net/nexus/NexusClient.class > /tmp/NexusClient.class
+unzip -p "../Nexus a0.8 1.21.11.jar" net/nexus/NexusClient.class > /tmp/NexusClient.class
 javap -p /tmp/NexusClient.class | grep -ciE "testGui|runTestHook" | grep -q '^0$' && echo "VERIFY OK: no test code in jar"
 echo "RELEASE BUILT"

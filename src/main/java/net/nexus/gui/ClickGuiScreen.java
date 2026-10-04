@@ -32,7 +32,7 @@ public final class ClickGuiScreen extends Screen
 			g.fill(0, 0, width, height, 0xAA000000);
 		
 		// 顶部标题
-		g.drawString(MC.font, "Nexus Client a0.7 1.21.11",
+		g.drawString(MC.font, "Nexus Client a0.8 1.21.11",
 			width / 2 - 40, 2, 0xFFFFFF);
 		
 		// 分类栏

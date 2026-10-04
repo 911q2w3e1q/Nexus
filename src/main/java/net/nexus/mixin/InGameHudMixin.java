@@ -31,7 +31,7 @@ public final class InGameHudMixin
 		Font font = MC.font;
 		
 		// 左上角标题
-		graphics.drawString(font, "Nexus Client a0.7 1.21.11",
+		graphics.drawString(font, "Nexus Client a0.8 1.21.11",
 			4, 3, 0xFFFFFFFF, false);
 		
 		// 雷达（右上角小地图）
