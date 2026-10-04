@@ -130,8 +130,8 @@ public final class HackList
 	public final AirPlaceHack airPlace = new AirPlaceHack();
 	public final AutoLadderHack autoLadder = new AutoLadderHack();
 	public final BridgeHack bridge = new BridgeHack();
-	public final LiquidInteractHack liquidInteract = new LiquidInteractHack();
 	public final ChestStealerHack chestStealer = new ChestStealerHack();
+	public final LiquidInteractHack liquidInteract = new LiquidInteractHack();
 	
 	// 渲染
 	public final FullbrightHack fullbright = new FullbrightHack();
@@ -366,8 +366,8 @@ public final class HackList
 		Translate.put("name.airplace", "空中放置");
 		Translate.put("name.autoladder", "自动爬梯子");
 		Translate.put("name.bridge", "搭桥");
-		Translate.put("name.liquidinteract", "液体交互");
 		Translate.put("name.cheststealer", "箱子窃取");
+		Translate.put("name.liquidinteract", "液体交互");
 		Translate.put("name.healthtags", "血条标签");
 		Translate.put("name.breadcrumbs", "足迹线");
 		Translate.put("name.xray", "幻透");

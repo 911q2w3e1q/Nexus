@@ -37,18 +37,8 @@ public final class ChatFilterHack extends Hack
 	{
 		if(shouldBlock(msg))
 			return true;
-		if(!net.nexus.hacks.AntiSpamHack.isActive())
-			return false;
-		
-		long now = System.currentTimeMillis() / 1000;
-		String key = msg.length() > 40 ? msg.substring(0, 40) : msg;
-		// 时间窗：同一秒内重复消息直接拦
-		if(now == lastTs && recent.contains(key))
+		if(net.nexus.hacks.AntiSpamHack.shouldBlock(msg))
 			return true;
-		recent.add(key);
-		if(recent.size() > 20)
-			recent.remove(0);
-		lastTs = now;
 		return false;
 	}
 }

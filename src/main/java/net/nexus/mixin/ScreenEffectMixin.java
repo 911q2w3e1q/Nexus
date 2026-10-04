@@ -18,7 +18,7 @@ public abstract class ScreenEffectMixin
 		net.minecraft.client.renderer.SubmitNodeCollector collector,
 		CallbackInfo ci)
 	{
-		if(NoOverlayHack.isActive())
+		if(NoOverlayHack.shouldCancel(firstPerson))
 			ci.cancel();
 	}
 }

@@ -18,7 +18,7 @@ public abstract class EntityPushMixin
 	private void nexusNoEntityPush(Entity other, CallbackInfo ci)
 	{
 		if((Object)this instanceof LocalPlayer
-			&& AntiEntityPushHack.isActive())
+			&& AntiEntityPushHack.shouldBlockEntity(other))
 			ci.cancel();
 	}
 	
@@ -29,7 +29,7 @@ public abstract class EntityPushMixin
 		CallbackInfo ci)
 	{
 		if((Object)this instanceof LocalPlayer
-			&& AntiWaterPushHack.isActive())
+			&& AntiWaterPushHack.shouldBlockWater())
 			ci.cancel();
 	}
 	
@@ -40,7 +40,7 @@ public abstract class EntityPushMixin
 		CallbackInfo ci)
 	{
 		if((Object)this instanceof LocalPlayer
-			&& AntiEntityPushHack.isActive())
+			&& AntiEntityPushHack.shouldBlockEntity((Entity)(Object)this))
 			ci.cancel();
 	}
 }

@@ -28,11 +28,10 @@ public final class ClickGuiScreen extends Screen
 	{
 		// 背景
 		// GUI 无背景：开启时背景全透明
-		if(!net.nexus.hacks.NoBackgroundHack.isActive())
-			g.fill(0, 0, width, height, 0xAA000000);
+		g.fill(0, 0, width, height, net.nexus.hacks.NoBackgroundHack.bgColor());
 		
 		// 顶部标题
-		g.drawString(MC.font, "Nexus Client a0.8 1.21.11",
+		g.drawString(MC.font, "Nexus Client a0.9 1.21.11",
 			width / 2 - 40, 2, 0xFFFFFF);
 		
 		// 分类栏

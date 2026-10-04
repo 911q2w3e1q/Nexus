@@ -31,11 +31,11 @@ public final class InGameHudMixin
 		Font font = MC.font;
 		
 		// 左上角标题
-		graphics.drawString(font, "Nexus Client a0.8 1.21.11",
+		graphics.drawString(font, "Nexus Client a0.9 1.21.11",
 			4, 3, 0xFFFFFFFF, false);
 		
 		// 雷达（右上角小地图）
-		if(net.nexus.hacks.RadarHack.isActive())
+		net.nexus.hacks.RadarHack.render(graphics, MC);
 		{
 			int gw = MC.getWindow().getGuiScaledWidth();
 			int rx = gw - 68, ry = 10;

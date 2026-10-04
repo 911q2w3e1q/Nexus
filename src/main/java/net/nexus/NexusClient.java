@@ -15,7 +15,7 @@ import net.minecraft.client.gui.GuiGraphics;
 public final class NexusClient implements ClientModInitializer
 {
 	public static final String NAME = "Nexus Client";
-	public static final String VERSION = "a0.8";
+	public static final String VERSION = "a0.9";
 	public static final String MC_VERSION = "1.21.11";
 	
 	private static NexusClient INSTANCE;

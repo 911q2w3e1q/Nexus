@@ -20,15 +20,6 @@ public abstract class FogRendererMixin
 		float b, ClientLevel level,
 		CallbackInfoReturnable<Vector4f> cir)
 	{
-		if(NoFogHack.isActive())
-		{
-			Vector4f v = cir.getReturnValue();
-			if(v != null)
-			{
-				v.x = 1000000.0f;
-				v.y = 1000000.0f;
-				cir.setReturnValue(v);
-			}
-		}
+		NoFogHack.clearFog(cir.getReturnValue());
 	}
 }

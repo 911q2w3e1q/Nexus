@@ -3,7 +3,7 @@
   "id": "nexus",
   "version": "${version}",
   "name": "Nexus Client",
-  "description": "Nexus Client a0.8 - MC 1.21.11",
+  "description": "Nexus Client a0.9 - MC 1.21.11",
   "authors": ["Nexus"],
   "license": "MIT",
   "environment": "client",

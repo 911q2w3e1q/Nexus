@@ -17,7 +17,7 @@ public abstract class LivingEntityMixin
 		double dz, CallbackInfo ci)
 	{
 		if((Object)this instanceof LocalPlayer
-			&& AntiKnockbackHack.isActive())
+			&& AntiKnockbackHack.shouldBlock())
 			ci.cancel();
 	}
 }
