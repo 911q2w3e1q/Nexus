@@ -39,7 +39,9 @@ cd Nexus
 
 ## 致谢
 
-特别感谢 [doubao](https://www.doubao.com/) 在项目开发、代码重构、文档编写和发布流程优化中的大力支持。
+- 特别感谢 [doubao](https://www.doubao.com/) 在项目开发、代码重构、文档编写和发布流程优化中的大力支持。
+- 感谢 [ZhouyiStudio](https://github.com/ZhouyiStudio) 提出宝贵的改进意见和 Issue。
+- 感谢 [xuanfeng0316](https://github.com/xuanfeng0316) 的贡献与反馈。
 
 ## License
 本项目基于 **MIT License** 协议开源。
