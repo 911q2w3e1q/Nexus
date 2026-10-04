@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "nexus",
+  "version": "${version}",
+  "name": "Nexus Client",
+  "description": "Nexus Client a0.6 - MC 1.21.11",
+  "authors": ["Nexus"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["net.nexus.NexusClient"]
+  },
+  "mixins": ["nexus.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~1.21.11",
+    "java": ">=21"
+  }
+}

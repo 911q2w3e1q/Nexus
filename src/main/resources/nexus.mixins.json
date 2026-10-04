@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "net.nexus.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "InGameHudMixin",
+    "CameraMixin",
+    "LevelMixin",
+    "FogRendererMixin",
+    "PlayerMixin",
+    "ClientPacketListenerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
