@@ -15,9 +15,14 @@ public final class SurroundHack extends Hack
 	private final Minecraft MC = Minecraft.getInstance();
 	private int cooldown;
 	
+	public final Setting includeHead = new Setting("包含头顶", true);
+	public final Setting includeFeet = new Setting("包含脚下", false);
+	
 	public SurroundHack()
 	{
 		super("Surround", "世界");
+		addSetting(includeHead);
+		addSetting(includeFeet);
 	}
 	
 	@Override
@@ -32,7 +37,7 @@ public final class SurroundHack extends Hack
 			return;
 		}
 		
-		// find obsidian
+		// 找黑曜石
 		int slot = -1;
 		for(int i = 0; i < 36; i++)
 		{
@@ -47,21 +52,30 @@ public final class SurroundHack extends Hack
 			return;
 		
 		BlockPos feet = MC.player.blockPosition();
-		BlockPos[] positions = {
-			feet.offset(1, 0, 0), feet.offset(-1, 0, 0),
-			feet.offset(0, 0, 1), feet.offset(0, 0, -1),
-			feet.offset(0, -1, 0)};
+		java.util.List<BlockPos> positions =
+			new java.util.ArrayList<>();
+		positions.add(feet.offset(1, 0, 0));
+		positions.add(feet.offset(-1, 0, 0));
+		positions.add(feet.offset(0, 0, 1));
+		positions.add(feet.offset(0, 0, -1));
+		if(includeHead.boolValue)
+			positions.add(feet.offset(0, 1, 0));
+		if(includeFeet.boolValue)
+			positions.add(feet.offset(0, -1, 0));
 		
 		for(BlockPos pos : positions)
 		{
-			if(MC.level.getBlockState(pos).isAir())
+			var bs = MC.level.getBlockState(pos);
+			if(bs.isAir()
+				|| !bs.getFluidState().isEmpty())
 			{
-				MC.player.getInventory().setSelectedSlot(slot < 9 ? slot : 0);
+				MC.player.getInventory().setSelectedSlot(
+					slot < 9 ? slot : 0);
 				BlockHitResult hit = new BlockHitResult(
 					Vec3.atCenterOf(pos), Direction.UP, pos, false);
 				MC.gameMode.useItemOn(MC.player,
 					InteractionHand.MAIN_HAND, hit);
-				cooldown = 5;
+				cooldown = 2;
 				return;
 			}
 		}

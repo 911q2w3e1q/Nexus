@@ -63,6 +63,86 @@ public final class EspRenderer
 			}
 		}
 		
+		// 刷怪笼 ESP（渲染方块实体里的刷怪笼）
+		if(net.nexus.hacks.MobSpawnEspHack.isActive())
+		{
+			for(net.minecraft.world.level.block.entity.BlockEntity be
+				: MC.level.getGloballyRenderedBlockEntities())
+			{
+				if(be.getType() == net.minecraft.world.level.block.entity
+					.BlockEntityType.MOB_SPAWNER)
+				{
+					var pos = be.getBlockPos();
+					drawBlock(g, pos.getX() + 0.5, pos.getY() + 0.5,
+						pos.getZ() + 0.5, cam, fov,
+						0xFFFF3333, "刷怪笼");
+				}
+			}
+		}
+		
+		// 开阔水域 ESP（周围 24 格扫描水面）
+		if(net.nexus.hacks.OpenWaterEspHack.isActive())
+		{
+			var bp = MC.player.blockPosition();
+			for(int dx = -24; dx <= 24; dx++)
+				for(int dy = -12; dy <= 12; dy++)
+					for(int dz = -24; dz <= 24; dz++)
+					{
+						var pos = bp.offset(dx, dy, dz);
+						var bs = MC.level.getBlockState(pos);
+						if(bs.is(net.minecraft.world.level.block
+							.Blocks.WATER))
+							drawBlock(g, pos.getX() + 0.5,
+								pos.getY() + 0.5, pos.getZ() + 0.5,
+								cam, fov, 0xFF44AAFF, "水");
+					}
+		}
+		
+		// 传送门 ESP（周围 24 格扫描）
+		if(net.nexus.hacks.PortalEspHack.isActive())
+		{
+			var bp = MC.player.blockPosition();
+			for(int dx = -24; dx <= 24; dx++)
+				for(int dy = -12; dy <= 12; dy++)
+					for(int dz = -24; dz <= 24; dz++)
+					{
+						var pos = bp.offset(dx, dy, dz);
+						var bs = MC.level.getBlockState(pos);
+						if(bs.is(net.minecraft.world.level.block
+							.Blocks.NETHER_PORTAL)
+							|| bs.is(net.minecraft.world.level.block
+								.Blocks.END_PORTAL))
+							drawBlock(g, pos.getX() + 0.5,
+								pos.getY() + 0.5, pos.getZ() + 0.5,
+								cam, fov, 0xFFAA44FF, "传送门");
+					}
+		}
+		
+		// 屏障方块 ESP + 搜索方块（周围 24 格扫描）
+		boolean barrier = net.nexus.hacks.BarrierEspHack.isActive();
+		boolean search = net.nexus.hacks.SearchHack.isActive();
+		if(barrier || search)
+		{
+			var bp = MC.player.blockPosition();
+			for(int dx = -24; dx <= 24; dx++)
+				for(int dy = -12; dy <= 12; dy++)
+					for(int dz = -24; dz <= 24; dz++)
+					{
+						var pos = bp.offset(dx, dy, dz);
+						var bs = MC.level.getBlockState(pos);
+						if(barrier && bs.is(
+							net.minecraft.world.level.block.Blocks.BARRIER))
+							drawBlock(g, pos.getX() + 0.5,
+								pos.getY() + 0.5, pos.getZ() + 0.5,
+								cam, fov, 0xFFFF4444, "屏障");
+						if(search && bs.is(
+							net.minecraft.world.level.block.Blocks.CHEST))
+							drawBlock(g, pos.getX() + 0.5,
+								pos.getY() + 0.5, pos.getZ() + 0.5,
+								cam, fov, 0xFF44FF44, "箱子");
+					}
+		}
+		
 		// 实体
 		for(Entity e : MC.level.entitiesForRendering())
 		{
@@ -77,6 +157,24 @@ public final class EspRenderer
 			else if(e instanceof ItemEntity i && item)
 				drawEntity(g, i, cam, fov, ItemEspHack.getColor(),
 					i.getItem().getHoverName().getString());
+		}
+		
+		// 真实视野：渲染隐形实体（框）
+		if(net.nexus.hacks.TrueSightHack.isActive())
+		{
+			for(Entity e : MC.level.entitiesForRendering())
+			{
+				if(e == MC.player || !e.isAlive())
+					continue;
+				if(!(e instanceof net.minecraft.world.entity
+					.LivingEntity))
+					continue;
+				var le = (net.minecraft.world.entity.LivingEntity)e;
+				if(le.isInvisible())
+					drawEntity(g, le, cam, fov, 0x66AAFFAA,
+						"隐形 " + le.getType().getDescription()
+							.getString());
+			}
 		}
 		
 		// Tracers 追踪线（玩家到所有实体）
@@ -142,6 +240,39 @@ public final class EspRenderer
 				g.drawString(MC.font, tag.text,
 					(int)sp[0] - 12, (int)sp[1] - 4, tag.color, true);
 			}
+		
+		// 投掷物弹道预测线
+		if(net.nexus.hacks.TrajectoriesHack.isActive())
+		{
+			net.minecraft.world.item.ItemStack held =
+				MC.player.getMainHandItem();
+			var heldItem = held.getItem();
+			if(heldItem == net.minecraft.world.item.Items.SNOWBALL
+				|| heldItem == net.minecraft.world.item.Items.ENDER_PEARL
+				|| heldItem instanceof net.minecraft.world.item.ThrowablePotionItem
+				|| heldItem == net.minecraft.world.item.Items.EGG
+				|| heldItem == net.minecraft.world.item.Items.FISHING_ROD)
+			{
+				Vec3 pos = MC.player.getEyePosition(1.0f);
+				Vec3 dir = MC.player.getLookAngle();
+				double vx = dir.x * 1.5;
+				double vy = dir.y * 1.5;
+				double vz = dir.z * 1.5;
+				Vec3 prev = pos;
+				for(int i = 0; i < 30; i++)
+				{
+					vy -= 0.05;
+					pos = pos.add(vx, vy, vz);
+					vx *= 0.99;
+					vz *= 0.99;
+					drawLine3D(g,
+						new double[] {prev.x, prev.y, prev.z},
+						new double[] {pos.x, pos.y, pos.z},
+						cam, fov, 0xFF55FF55);
+					prev = pos;
+				}
+			}
+		}
 		
 		// AirPlace 引导线
 		if(net.nexus.hacks.AirPlaceHack.isActive()

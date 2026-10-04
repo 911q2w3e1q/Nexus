@@ -8,7 +8,10 @@
     "LevelMixin",
     "FogRendererMixin",
     "PlayerMixin",
-    "ClientPacketListenerMixin"
+    "ClientPacketListenerMixin",
+    "LivingEntityMixin",
+    "EntityPushMixin",
+    "ScreenEffectMixin"
   ],
   "injectors": {
     "defaultRequire": 1

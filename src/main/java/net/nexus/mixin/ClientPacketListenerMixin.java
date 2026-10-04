@@ -21,8 +21,9 @@ public abstract class ClientPacketListenerMixin
 		String msg = packet.unsignedContent() != null
 			? packet.unsignedContent().getString()
 			: packet.body().content();
-		if(msg != null && ChatFilterHack.shouldBlock(msg))
+		if(msg != null && ChatFilterHack.shouldBlockGlobal(msg))
 			ci.cancel();
+
 	}
 	
 	@Inject(method = "handleSystemChat", at = @At("HEAD"),
@@ -30,7 +31,7 @@ public abstract class ClientPacketListenerMixin
 	private void nexusFilterSystemChat(ClientboundSystemChatPacket packet,
 		CallbackInfo ci)
 	{
-		if(ChatFilterHack.shouldBlock(packet.content().getString()))
+		if(ChatFilterHack.shouldBlockGlobal(packet.content().getString()))
 			ci.cancel();
 	}
 }

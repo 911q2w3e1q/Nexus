@@ -31,8 +31,37 @@ public final class InGameHudMixin
 		Font font = MC.font;
 		
 		// 左上角标题
-		graphics.drawString(font, "Nexus Client a0.6 1.21.11",
+		graphics.drawString(font, "Nexus Client a0.7 1.21.11",
 			4, 3, 0xFFFFFFFF, false);
+		
+		// 雷达（右上角小地图）
+		if(net.nexus.hacks.RadarHack.isActive())
+		{
+			int gw = MC.getWindow().getGuiScaledWidth();
+			int rx = gw - 68, ry = 10;
+			graphics.fill(rx, ry, rx + 64, ry + 64, 0x88000000);
+			graphics.fill(rx + 31, ry + 31, rx + 33, ry + 33,
+				0xFFFFFFFF); // 自己中心白点
+			for(net.minecraft.world.entity.Entity e
+				: MC.level.entitiesForRendering())
+			{
+				if(e == MC.player || !e.isAlive())
+					continue;
+				if(!(e instanceof net.minecraft.world.entity
+					.LivingEntity))
+					continue;
+				double dx = e.getX() - MC.player.getX();
+				double dz = e.getZ() - MC.player.getZ();
+				double dist = Math.sqrt(dx * dx + dz * dz);
+				if(dist > 32)
+					continue;
+				int sx = rx + 32 + (int)(dx * 2);
+				int sy = ry + 32 + (int)(dz * 2);
+				graphics.fill(sx - 1, sy - 1, sx + 2, sy + 2,
+					e instanceof net.minecraft.world.entity.player.Player
+						? 0xFF55FFFF : 0xFFFF5555);
+			}
+		}
 		
 		// 已启用功能列表
 		int y = 14;
@@ -47,4 +76,15 @@ public final class InGameHudMixin
 				break;
 		}
 	}
+
+	// 无暗角
+	@Inject(method = "renderVignette",
+		at = @At("HEAD"), cancellable = true)
+	private void nexusNoVignette(GuiGraphics graphics,
+		net.minecraft.world.entity.Entity entity, CallbackInfo ci)
+	{
+		if(net.nexus.hacks.NoVignetteHack.isActive())
+			ci.cancel();
+	}
+
 }

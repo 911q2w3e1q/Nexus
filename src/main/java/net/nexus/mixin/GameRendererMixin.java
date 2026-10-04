@@ -37,7 +37,7 @@ public final class GameRendererMixin
 		Font font = MC.font;
 		
 		// 左上角标题
-		font.drawInBatch("Nexus Client a0.6 1.21.11",
+		font.drawInBatch("Nexus Client a0.7 1.21.11",
 			4, 3, 0xFFFFFF, false, mat, buffer,
 			Font.DisplayMode.NORMAL, 0, 15728880);
 		

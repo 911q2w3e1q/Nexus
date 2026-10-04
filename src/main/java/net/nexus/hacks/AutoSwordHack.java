@@ -22,7 +22,11 @@ public final class AutoSwordHack extends Hack
 	@Override
 	public void onTick()
 	{
-		if(MC.player == null || MC.hitResult == null)
+		if(MC.player == null)
+			return;
+		
+		// 已拿着剑就不用换
+		if(isSword(MC.player.getMainHandItem()))
 			return;
 		
 		int bestSlot = -1;
@@ -31,18 +35,25 @@ public final class AutoSwordHack extends Hack
 			ItemStack stack = MC.player.getInventory().getItem(i);
 			if(stack == null || stack.isEmpty())
 				continue;
-			for(Item sword : SWORDS)
-				if(stack.is(sword))
-				{
-					bestSlot = i;
-					break;
-				}
-			if(bestSlot >= 0)
+			if(isSword(stack))
+			{
+				bestSlot = i;
 				break;
+			}
 		}
 		
 		if(bestSlot >= 0
 			&& MC.player.getInventory().getSelectedSlot() != bestSlot)
 			MC.player.getInventory().setSelectedSlot(bestSlot);
+	}
+	
+	private boolean isSword(ItemStack stack)
+	{
+		if(stack == null || stack.isEmpty())
+			return false;
+		for(Item sword : SWORDS)
+			if(stack.is(sword))
+				return true;
+		return false;
 	}
 }

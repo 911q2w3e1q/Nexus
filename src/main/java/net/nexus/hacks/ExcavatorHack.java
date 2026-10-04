@@ -10,11 +10,13 @@ public final class ExcavatorHack extends Hack
 	private int tick;
 	
 	public final Setting radius = new Setting("半径", 1f, 1f, 5f, 1f);
+	public final Setting depth = new Setting("深度", 1f, 1f, 6f, 1f);
 	
 	public ExcavatorHack()
 	{
 		super("Excavator", "世界");
 		addSetting(radius);
+		addSetting(depth);
 	}
 	
 	@Override
@@ -29,7 +31,7 @@ public final class ExcavatorHack extends Hack
 		tick = 0;
 		
 		BlockPos center = MC.player.blockPosition();
-		for(int dy = -1; dy <= 0; dy++)
+		for(int dy = -1; dy >= -(int)depth.value; dy--)
 			for(int dx = -(int)radius.value; dx <= (int)radius.value; dx++)
 				for(int dz = -(int)radius.value; dz <= (int)radius.value; dz++)
 				{

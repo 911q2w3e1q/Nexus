@@ -91,6 +91,7 @@ public abstract class Hack
 	{
 		public final String name;
 		public final boolean isSlider;
+		public final boolean isEnum;
 		// 滑动条
 		public float value;
 		public final float min;
@@ -98,27 +99,62 @@ public abstract class Hack
 		public final float step;
 		// 开关
 		public boolean boolValue;
+		// 枚举
+		public final String[] options;
+		public int index;
+		
+
+		public Setting(String name, boolean value)
+		{
+			this.name = name;
+			this.isSlider = false;
+			this.isEnum = false;
+			this.boolValue = value;
+			this.options = null;
+			this.index = 0;
+			this.value = 0;
+			this.min = 0;
+			this.max = 1;
+			this.step = 1;
+		}
 		
 		public Setting(String name, float value, float min,
 			float max, float step)
 		{
 			this.name = name;
 			this.isSlider = true;
+			this.isEnum = false;
 			this.value = value;
+			this.options = null;
+			this.index = 0;
 			this.min = min;
 			this.max = max;
 			this.step = step;
 		}
 		
-		public Setting(String name, boolean value)
+		/** 枚举设置（点击循环切换） */
+		public Setting(String name, String[] options, int defaultIndex)
 		{
 			this.name = name;
 			this.isSlider = false;
-			this.boolValue = value;
+			this.isEnum = true;
+			this.options = options;
+			this.index = defaultIndex;
+			this.boolValue = false;
 			this.value = 0;
 			this.min = 0;
-			this.max = 1;
+			this.max = options.length - 1;
 			this.step = 1;
+		}
+		
+		public void cycle()
+		{
+			index = (index + 1) % options.length;
+		}
+		
+		public String getEnumValue()
+		{
+			return options[index];
 		}
 		
 		/** 按位置设置滑动值（0~1 比例） */

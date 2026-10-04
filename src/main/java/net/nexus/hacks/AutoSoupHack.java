@@ -9,9 +9,12 @@ public final class AutoSoupHack extends Hack
 {
 	private final Minecraft MC = Minecraft.getInstance();
 	
+	public final Setting health = new Setting("血量阈值", 10f, 2f, 20f, 1f);
+	
 	public AutoSoupHack()
 	{
 		super("AutoSoup", "战斗");
+		addSetting(health);
 	}
 	
 	@Override
@@ -20,20 +23,24 @@ public final class AutoSoupHack extends Hack
 		if(MC.player == null)
 			return;
 		
-		if(MC.player.getHealth() > 12)
+		// 血量低时喝蘑菇汤回血
+		if(MC.player.getHealth() > health.value)
 			return;
 		
+		int slot = -1;
 		for(int i = 0; i < 9; i++)
 		{
-			var stack = MC.player.getInventory().getItem(i);
-			if(stack != null && (stack.is(Items.MUSHROOM_STEW)
-				|| stack.is(Items.BEETROOT_SOUP)
-				|| stack.is(Items.RABBIT_STEW)))
+			var s = MC.player.getInventory().getItem(i);
+			if(s != null && s.is(Items.MUSHROOM_STEW))
 			{
-				MC.player.getInventory().setSelectedSlot(i);
-				MC.gameMode.useItem(MC.player, InteractionHand.MAIN_HAND);
-				return;
+				slot = i;
+				break;
 			}
 		}
+		if(slot < 0)
+			return;
+		
+		MC.player.getInventory().setSelectedSlot(slot);
+		MC.gameMode.useItem(MC.player, InteractionHand.MAIN_HAND);
 	}
 }

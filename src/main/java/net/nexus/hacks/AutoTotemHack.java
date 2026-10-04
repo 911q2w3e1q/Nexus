@@ -2,7 +2,6 @@ package net.nexus.hacks;
 
 import net.nexus.hack.Hack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 public final class AutoTotemHack extends Hack
@@ -20,16 +19,20 @@ public final class AutoTotemHack extends Hack
 		if(MC.player == null)
 			return;
 		
+		// 副手放不死图腾
 		if(MC.player.getOffhandItem().is(Items.TOTEM_OF_UNDYING))
 			return;
 		
-		for(int i = 0; i < 36; i++)
+		for(int i = 9; i < 36; i++)
 		{
-			var stack = MC.player.getInventory().getItem(i);
-			if(stack != null && stack.is(Items.TOTEM_OF_UNDYING))
+			var s = MC.player.getInventory().getItem(i);
+			if(s != null && s.is(Items.TOTEM_OF_UNDYING))
 			{
-				MC.player.getInventory().setItem(40, stack.copy());
-				MC.player.getInventory().setItem(i, ItemStack.EMPTY);
+				MC.player.setItemSlot(
+					net.minecraft.world.entity.EquipmentSlot.OFFHAND,
+					s.copy());
+				MC.player.getInventory().setItem(i,
+					net.minecraft.world.item.ItemStack.EMPTY);
 				return;
 			}
 		}

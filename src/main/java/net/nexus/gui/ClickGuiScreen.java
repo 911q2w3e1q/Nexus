@@ -27,10 +27,12 @@ public final class ClickGuiScreen extends Screen
 	public void render(GuiGraphics g, int mouseX, int mouseY, float partialTick)
 	{
 		// 背景
-		g.fill(0, 0, width, height, 0xAA000000);
+		// GUI 无背景：开启时背景全透明
+		if(!net.nexus.hacks.NoBackgroundHack.isActive())
+			g.fill(0, 0, width, height, 0xAA000000);
 		
 		// 顶部标题
-		g.drawString(MC.font, "Nexus Client a0.6 1.21.11",
+		g.drawString(MC.font, "Nexus Client a0.7 1.21.11",
 			width / 2 - 40, 2, 0xFFFFFF);
 		
 		// 分类栏
@@ -39,7 +41,11 @@ public final class ClickGuiScreen extends Screen
 		{
 			int w = MC.font.width(cat) + 12;
 			boolean selected = cat.equals(selectedCategory);
-			g.fill(x, 16, x + w, 30, selected ? 0xFF3366FF : 0xFF333333);
+			// 彩虹UI：开启时选中分类用彩虹色
+			int selColor = net.nexus.hacks.RainbowUiHack.isActive()
+				? net.nexus.hacks.RainbowUiHack.getColor()
+				: 0xFF3366FF;
+			g.fill(x, 16, x + w, 30, selected ? selColor : 0xFF333333);
 			g.drawString(MC.font, cat, x + 6, 19,
 				selected ? 0xFFFFFFFF : 0xFFAAAAAA);
 			x += w + 4;

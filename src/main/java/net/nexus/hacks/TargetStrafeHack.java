@@ -1,6 +1,7 @@
 package net.nexus.hacks;
 
 import net.nexus.hack.Hack;
+import net.nexus.util.EntityUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
@@ -8,11 +9,16 @@ import net.minecraft.world.phys.Vec3;
 public final class TargetStrafeHack extends Hack
 {
 	private final Minecraft MC = Minecraft.getInstance();
-	private boolean clockwise = true;
+	private boolean right;
+	
+	public final Setting radius = new Setting("半径", 2.5f, 1f, 6f, 0.5f);
+	public final Setting speed = new Setting("速度", 1f, 0.5f, 3f, 0.1f);
 	
 	public TargetStrafeHack()
 	{
 		super("TargetStrafe", "战斗");
+		addSetting(radius);
+		addSetting(speed);
 	}
 	
 	@Override
@@ -22,32 +28,35 @@ public final class TargetStrafeHack extends Hack
 			return;
 		
 		Entity target = null;
-		double bestDist = 6;
-		for(Entity e : MC.level.entitiesForRendering())
+		double best = 8.0;
+		for(Entity e : EntityUtils.getAttackableEntities(true, true))
 		{
-			if(e == MC.player || !e.isAlive())
-				continue;
-			double d = MC.player.distanceTo(e);
-			if(d < bestDist)
+			double d = EntityUtils.getDistanceTo(e);
+			if(d < best)
 			{
-				bestDist = d;
+				best = d;
 				target = e;
 			}
 		}
-		
 		if(target == null)
 			return;
 		
-		Vec3 tp = target.position();
-		Vec3 pp = MC.player.position();
-		double angle = Math.atan2(pp.z - tp.z, pp.x - tp.x);
-		angle += clockwise ? Math.PI / 2 : -Math.PI / 2;
+		// 绕目标转圈：切线方向移动
+		Vec3 t = EntityUtils.getCenter(target);
+		Vec3 p = MC.player.position();
+		double dx = p.x - t.x;
+		double dz = p.z - t.z;
+		double dist = Math.sqrt(dx * dx + dz * dz);
+		if(dist < 0.1)
+			return;
 		
-		Vec3 v = MC.player.getDeltaMovement();
-		MC.player.setDeltaMovement(-Math.sin(angle) * 0.5, v.y,
-			Math.cos(angle) * 0.5);
+		right = !right;
+		double tx = -dz / dist * (right ? 1 : -1);
+		double tz = dx / dist * (right ? 1 : -1);
+		MC.player.setDeltaMovement(tx * speed.value,
+			MC.player.getDeltaMovement().y, tz * speed.value);
 		
-		if(Math.random() < 0.005)
-			clockwise = !clockwise;
+		// 面朝目标
+		EntityUtils.lookAt(target);
 	}
 }

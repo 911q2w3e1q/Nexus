@@ -49,7 +49,18 @@ public final class SettingsScreen extends Screen
 			g.fill(4, y, width - 4, y + 20,
 				hovered ? 0x663366FF : 0x33000000);
 			
-			if(s.isSlider)
+			if(s.isEnum)
+			{
+				g.drawString(MC.font, s.name, 10, y + 5,
+					0xFFFFFFFF);
+				g.drawString(MC.font,
+					s.getEnumValue(),
+					10 + MC.font.width(s.name) + 6, y + 5,
+					0xFF00AAFF);
+				g.drawString(MC.font, "点击切换",
+					width - 100, y + 5, 0xFF888888);
+			}
+			else if(s.isSlider)
 			{
 				// 名称 + 值（值跟在名称后，防窄窗口溢出）
 				String val = String.format("%.1f", s.value);
@@ -113,7 +124,11 @@ public final class SettingsScreen extends Screen
 			{
 				if(mouseY >= y && mouseY <= y + 20)
 				{
-					if(s.isSlider)
+					if(s.isEnum)
+					{
+						s.cycle();
+					}
+					else if(s.isSlider)
 					{
 						// 只在进度条区域点击才调值（防误触）
 						int bx = width - 170;

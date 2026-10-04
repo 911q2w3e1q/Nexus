@@ -11,6 +11,65 @@ public final class HackList
 	private final List<Hack> hacks = new ArrayList<>();
 	
 	// 移动
+	public final BlinkHack blink = new BlinkHack();
+	public final RadarHack radar = new RadarHack();
+	public final AimAssistHack aimAssist = new AimAssistHack();
+	public final TrajectoriesHack trajectories = new TrajectoriesHack();
+	public final AntiKnockbackHack antiKnockback = new AntiKnockbackHack();
+	public final InstantBunkerHack instantBunker = new InstantBunkerHack();
+	public final BoatFlyHack boatFly = new BoatFlyHack();
+	public final ClickAuraHack clickAura = new ClickAuraHack();
+	public final FeedAuraHack feedAura = new FeedAuraHack();
+	public final InvWalkHack invWalk = new InvWalkHack();
+	public final CreativeFlightHack creativeFlight = new CreativeFlightHack();
+	public final NoLevitationHack noLevitation = new NoLevitationHack();
+	public final SnowShoeHack snowShoe = new SnowShoeHack();
+	public final AntiEntityPushHack antiEntityPush = new AntiEntityPushHack();
+	public final AntiWaterPushHack antiWaterPush = new AntiWaterPushHack();
+	public final VeinMinerHack veinMiner = new VeinMinerHack();
+	public final AutoStealHack autoSteal = new AutoStealHack();
+	public final FastPlaceHack fastPlace = new FastPlaceHack();
+	public final LiquidsHack liquids = new LiquidsHack();
+	public final RestockHack restock = new RestockHack();
+	public final SpeedNukerHack speedNuker = new SpeedNukerHack();
+	public final TpAuraHack tpAura = new TpAuraHack();
+	public final ArrowDmgHack arrowDmg = new ArrowDmgHack();
+	public final AutoPotionHack autoPotion = new AutoPotionHack();
+	public final KillauraLegitHack killauraLegit = new KillauraLegitHack();
+	public final MobSpawnEspHack mobSpawnEsp = new MobSpawnEspHack();
+	public final BarrierEspHack barrierEsp = new BarrierEspHack();
+	public final SearchHack search = new SearchHack();
+	public final TrueSightHack trueSight = new TrueSightHack();
+	public final AntiSpamHack antiSpam = new AntiSpamHack();
+	public final DerpHack derp = new DerpHack();
+	public final ExtraElytraHack extraElytra = new ExtraElytraHack();
+	public final HeadRollHack headRoll = new HeadRollHack();
+	public final SkinDerpHack skinDerp = new SkinDerpHack();
+	public final TiredHack tired = new TiredHack();
+	public final MileyCyrusHack mileyCyrus = new MileyCyrusHack();
+	public final AntiHungerHack antiHunger = new AntiHungerHack();
+	public final AutoFarmHack autoFarm = new AutoFarmHack();
+	public final AutoSignHack autoSign = new AutoSignHack();
+	public final BonemealAuraHack bonemealAura = new BonemealAuraHack();
+	public final TillauraHack tillaura = new TillauraHack();
+	public final ThrowHack throwHack = new ThrowHack();
+	public final InstaBuildHack instaBuild = new InstaBuildHack();
+	public final RainbowUiHack rainbowUi = new RainbowUiHack();
+	public final PortalEspHack portalEsp = new PortalEspHack();
+	public final AntiBlindHack antiBlind = new AntiBlindHack();
+	public final LsdHack lsd = new LsdHack();
+	public final NoWeatherHack noWeather = new NoWeatherHack();
+	public final BaseFinderHack baseFinder = new BaseFinderHack();
+	public final CaveFinderHack caveFinder = new CaveFinderHack();
+	public final NukerLegitHack nukerLegit = new NukerLegitHack();
+	public final FancyChatHack fancyChat = new FancyChatHack();
+	public final OpenWaterEspHack openWaterEsp = new OpenWaterEspHack();
+	public final MaceDmgHack maceDmg = new MaceDmgHack();
+	public final NoVignetteHack noVignette = new NoVignetteHack();
+	public final NoOverlayHack noOverlay = new NoOverlayHack();
+	public final NoBackgroundHack noBackground = new NoBackgroundHack();
+
+	public final NoClipHack noClip = new NoClipHack();
 	public final FlightHack flight = new FlightHack();
 	public final FakeFlightHack fakeFlight = new FakeFlightHack();
 	public final SpeedHack speed = new SpeedHack();
@@ -129,6 +188,35 @@ public final class HackList
 	public HackList()
 	{
 		// 移动
+		hacks.add(blink); hacks.add(radar); hacks.add(aimAssist);
+		hacks.add(trajectories); hacks.add(antiKnockback);
+		hacks.add(instantBunker); hacks.add(boatFly);
+		hacks.add(clickAura); hacks.add(feedAura);
+		hacks.add(invWalk); hacks.add(creativeFlight);
+		hacks.add(noLevitation); hacks.add(snowShoe);
+		hacks.add(antiEntityPush); hacks.add(antiWaterPush);
+		hacks.add(veinMiner); hacks.add(autoSteal);
+		hacks.add(fastPlace); hacks.add(liquids); hacks.add(restock);
+		hacks.add(speedNuker); hacks.add(tpAura); hacks.add(arrowDmg);
+		hacks.add(autoPotion); hacks.add(killauraLegit);
+		hacks.add(mobSpawnEsp); hacks.add(barrierEsp);
+		hacks.add(search); hacks.add(trueSight);
+		hacks.add(antiSpam); hacks.add(derp);
+		hacks.add(extraElytra); hacks.add(headRoll);
+		hacks.add(skinDerp); hacks.add(tired);
+		hacks.add(mileyCyrus); hacks.add(antiHunger);
+		hacks.add(autoFarm); hacks.add(autoSign);
+		hacks.add(bonemealAura); hacks.add(tillaura);
+		hacks.add(throwHack); hacks.add(instaBuild);
+		hacks.add(rainbowUi); hacks.add(portalEsp);
+		hacks.add(antiBlind); hacks.add(lsd);
+		hacks.add(noWeather); hacks.add(baseFinder);
+		hacks.add(caveFinder); hacks.add(nukerLegit);
+		hacks.add(fancyChat); hacks.add(openWaterEsp);
+		hacks.add(maceDmg); hacks.add(noVignette);
+		hacks.add(noOverlay); hacks.add(noBackground);
+
+		hacks.add(noClip);
 		hacks.add(flight); hacks.add(fakeFlight); hacks.add(speed);
 		hacks.add(longJump); hacks.add(antiVoid); hacks.add(vClip);
 		hacks.add(freeze); hacks.add(holeSnap); hacks.add(noFall);
@@ -188,7 +276,6 @@ public final class HackList
 		Translate.put("name.holesnap", "进洞吸附");
 		Translate.put("name.nofall", "防摔落");
 		Translate.put("name.jesus", "水上行走");
-		// 战斗
 		Translate.put("name.killaura", "杀戮光环");
 		Translate.put("name.crystalaura", "水晶光环");
 		Translate.put("name.autoclicker", "自动连点");
@@ -198,7 +285,6 @@ public final class HackList
 		Translate.put("name.autorod", "钓鱼竿连击");
 		Translate.put("name.autoshoot", "自动投掷");
 		Translate.put("name.anticreeper", "防苦力怕");
-		// 世界
 		Translate.put("name.scaffold", "自动搭路");
 		Translate.put("name.nuker", "核爆挖矿");
 		Translate.put("name.autotool", "自动选工具");
@@ -206,16 +292,13 @@ public final class HackList
 		Translate.put("name.holefill", "填洞");
 		Translate.put("name.autotrap", "自动封人");
 		Translate.put("name.wallhack", "隔墙透视");
-		// 渲染
 		Translate.put("name.fullbright", "亮度增强");
 		Translate.put("name.zoom", "缩放");
-		// 聊天/其他
 		Translate.put("name.spammer", "刷屏机");
 		Translate.put("name.autogg", "自动GG");
 		Translate.put("name.autorespawn", "自动重生");
 		Translate.put("name.autowalk", "自动行走");
 		Translate.put("name.autosprint", "自动疾跑");
-		// 移动新增
 		Translate.put("name.bunnyhop", "兔子跳");
 		Translate.put("name.airjump", "空中跳");
 		Translate.put("name.highjump", "高跳");
@@ -225,7 +308,6 @@ public final class HackList
 		Translate.put("name.safewalk", "安全行走");
 		Translate.put("name.noslowdown", "防减速");
 		Translate.put("name.autoswim", "自动游泳");
-		// 战斗新增
 		Translate.put("name.triggerbot", "扳机");
 		Translate.put("name.criticals", "暴击");
 		Translate.put("name.autoarmor", "自动穿甲");
@@ -234,7 +316,6 @@ public final class HackList
 		Translate.put("name.autoblock", "自动格挡");
 		Translate.put("name.multiaura", "多重光环");
 		Translate.put("name.bowaimbot", "弓箭瞄准");
-		// 世界新增
 		Translate.put("name.excavator", "挖掘机");
 		Translate.put("name.automine", "自动挖矿");
 		Translate.put("name.fastbreak", "快速挖掘");
@@ -242,7 +323,6 @@ public final class HackList
 		Translate.put("name.placer", "自动放置");
 		Translate.put("name.remover", "自动移除");
 		Translate.put("name.blocker", "阻挡");
-		// 渲染新增
 		Translate.put("name.tracers", "追踪线");
 		Translate.put("name.nofog", "去雾");
 		Translate.put("name.nametags", "名字标签");
@@ -250,7 +330,6 @@ public final class HackList
 		Translate.put("name.mobesp", "怪物透视");
 		Translate.put("name.chestesp", "箱子透视");
 		Translate.put("name.itemesp", "掉落物透视");
-		// 其他新增
 		Translate.put("name.panic", "一键关闭");
 		Translate.put("name.cleanup", "清理掉落物");
 		Translate.put("name.autodrop", "自动丢弃");
@@ -259,7 +338,6 @@ public final class HackList
 		Translate.put("name.autoreply", "自动回复");
 		Translate.put("name.autofish", "自动钓鱼");
 		Translate.put("name.autoeat", "自动吃东西");
-		// v3 新增
 		Translate.put("name.step", "自动爬台阶");
 		Translate.put("name.spider", "蜘蛛爬墙");
 		Translate.put("name.jetpack", "喷气背包");
@@ -271,7 +349,6 @@ public final class HackList
 		Translate.put("name.chatfilter", "聊天过滤");
 		Translate.put("name.autoleave", "自动退出");
 		Translate.put("name.autoreconnect", "自动重连");
-		// v4 新增
 		Translate.put("name.noweb", "防蜘蛛网");
 		Translate.put("name.icespeed", "冰上加速");
 		Translate.put("name.fastladder", "快速爬梯");
@@ -295,6 +372,65 @@ public final class HackList
 		Translate.put("name.breadcrumbs", "足迹线");
 		Translate.put("name.xray", "幻透");
 		Translate.put("name.autoswitch", "自动换物品");
+		Translate.put("name.blink", "瞬移");
+		Translate.put("name.boatfly", "船飞");
+		Translate.put("name.noclip", "穿墙");
+		Translate.put("name.radar", "雷达");
+		Translate.put("name.aimassist", "瞄准辅助");
+		Translate.put("name.trajectories", "弹道预测");
+		Translate.put("name.antiknockback", "防击退");
+		Translate.put("name.instantbunker", "瞬间碉堡");
+		Translate.put("name.clickaura", "点击光环");
+		Translate.put("name.feedaura", "喂食光环");
+		Translate.put("name.invwalk", "背包行走");
+		Translate.put("name.creativeflight", "创造飞行");
+		Translate.put("name.nolevitation", "防飘浮");
+		Translate.put("name.snowshoe", "雪地鞋");
+		Translate.put("name.antientitypush", "防实体推挤");
+		Translate.put("name.antiwaterpush", "防水流推挤");
+		Translate.put("name.veinminer", "连锁挖矿");
+		Translate.put("name.autosteal", "自动偷箱");
+		Translate.put("name.fastplace", "快速放置");
+		Translate.put("name.liquids", "液体放置");
+		Translate.put("name.restock", "补货");
+		Translate.put("name.speednuker", "快速核爆");
+		Translate.put("name.tpaura", "传送光环");
+		Translate.put("name.arrowdmg", "弓箭伤害");
+		Translate.put("name.autopotion", "自动喝药");
+		Translate.put("name.killauralegit", "合法杀戮");
+		Translate.put("name.mobspawnesp", "刷怪笼ESP");
+		Translate.put("name.barrieresp", "屏障ESP");
+		Translate.put("name.search", "搜索方块");
+		Translate.put("name.truesight", "真实视野");
+		Translate.put("name.antispam", "防刷屏");
+		Translate.put("name.derp", "抽搐头");
+		Translate.put("name.extraelytra", "鞘翅滑翔");
+		Translate.put("name.headroll", "摇头");
+		Translate.put("name.skinderp", "皮肤抽搐");
+		Translate.put("name.tired", "疲倦");
+		Translate.put("name.mileycyrus", "麦莉舞");
+		Translate.put("name.antihunger", "防饥饿");
+		Translate.put("name.autofarm", "自动种田");
+		Translate.put("name.autosign", "自动告示牌");
+		Translate.put("name.bonemealaura", "骨粉光环");
+		Translate.put("name.tillaura", "耕地光环");
+		Translate.put("name.throw", "自动投掷");
+		Translate.put("name.instabuild", "瞬间建造");
+		Translate.put("name.rainbowui", "彩虹UI");
+		Translate.put("name.portalesp", "传送门ESP");
+		Translate.put("name.antiblind", "防失明");
+		Translate.put("name.lsd", "迷幻");
+		Translate.put("name.noweather", "无天气");
+		Translate.put("name.basefinder", "基地探测");
+		Translate.put("name.cavefinder", "洞穴探测");
+		Translate.put("name.nukerlegit", "合法核爆");
+		Translate.put("name.fancychat", "彩色聊天");
+		Translate.put("name.openwateresp", "开阔水域ESP");
+		Translate.put("name.macedmg", "重锤伤害");
+		Translate.put("name.novignette", "无暗角");
+		Translate.put("name.nooverlay", "无屏幕效果");
+		Translate.put("name.nobackground", "GUI无背景");
+
 	}
 	
 	public void onTick()

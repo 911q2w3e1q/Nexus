@@ -9,7 +9,7 @@ import net.minecraft.world.entity.Entity;
 public final class KillauraHack extends Hack
 {
 	private final Minecraft MC = Minecraft.getInstance();
-	private int tick;
+	private float attackTimer;
 	
 	public final Setting range = new Setting("范围", 4.25f, 2f, 8f, 0.25f);
 	public final Setting speed = new Setting("攻击间隔", 1f, 1f, 10f, 1f);
@@ -33,10 +33,11 @@ public final class KillauraHack extends Hack
 		if(MC.player == null || MC.level == null)
 			return;
 		
-		tick++;
-		if(tick < (int)speed.value)
+		// 攻击间隔累计（float 精度，支持 1.5 tick 间隔）
+		attackTimer += speed.value;
+		if(attackTimer < 20f)
 			return;
-		tick = 0;
+		attackTimer -= 20f;
 		
 		Entity target = null;
 		double best = range.value;
