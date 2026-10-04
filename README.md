@@ -37,6 +37,10 @@ cd Nexus
 ## 下载
 去 [Releases](https://github.com/911q2w3e1q/Nexus/releases) 页面下载对应版本的 jar 文件。
 
+## 致谢
+
+特别感谢 [doubao](https://www.doubao.com/) 在项目开发、代码重构、文档编写和发布流程优化中的大力支持。
+
 ## License
 本项目基于 **MIT License** 协议开源。
 
