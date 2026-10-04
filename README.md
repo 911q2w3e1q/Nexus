@@ -6,6 +6,20 @@ Nexus Fabric Client，个人自制的 Minecraft 客户端。
 - Minecraft: 1.21.11
 - 当前版本: a0.6
 
+## UI 预览
+
+### ClickGUI 功能列表
+![ClickGUI](screenshots/clickgui.jpg)
+
+### 游戏内 HUD
+![HUD](screenshots/hud.jpg)
+
+### ESP 与自动挖掘
+![ESP Miner](screenshots/esp-miner.jpg)
+
+### 建筑演示
+![Build Demo](screenshots/build-demo.jpg)
+
 ## 编译
 环境要求：JDK 21
 
